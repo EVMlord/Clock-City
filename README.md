@@ -10,6 +10,8 @@ Unlocking the art of time.
 
 <img src="https://gist.github.com/EVMlord/e6283d8f97c58e97b5b31d0805ee4041">
 
+<script src="https://gist.github.com/EVMlord/e6283d8f97c58e97b5b31d0805ee4041.js"></script>
+
 
 
 
