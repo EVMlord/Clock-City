@@ -1,6 +1,6 @@
 # Clock-City - Unlocking the art of time.
 
-##Have you ever thought about owning a piece of time? 
+## Have you ever thought about owning a piece of time? 
 
 With **Clock City**, that's exactly what we're offering - a unique, engaging, and completely on-chain digital clock NFT collection that lets you own, trade, and treasure moments in time.
 
