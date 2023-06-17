@@ -1835,8 +1835,8 @@ contract ClockCity is
     string public hiddenURI;
 
     uint256 public constant maxSupply = 9999;
-    uint256 public cost = 5 ether;
-    uint256 public maxMintAmount = 5;
+    uint256 public cost = 0.1 ether;
+    uint256 public maxMintAmount = 1; //Set to 1 for testnet.
     uint256 lastSupply = maxSupply;
     uint256[maxSupply] public remainingIds;
 
@@ -1872,10 +1872,14 @@ contract ClockCity is
                 )
             )
         );
+        // Added for testnet
+        require(!wlClaimed[msg.sender], "Already minted!");
+        // Added for Testnet
+        wlClaimed[msg.sender] = true;
 
         for (uint256 i = 0; i < _mintAmount; i++) {
             _mint(_msgSender());
-        }
+        }        
     }
 
     function reserve(address _beneficiary, uint256 _mintAmount)
@@ -1942,6 +1946,9 @@ contract ClockCity is
         // Generate Seed
         CD storage cD = cd[nextId];
         cD.s = generateSeed(_receiver);
+        // Added for Testnet
+        cD.d = _getRandom() % 24;
+        cD.h = _getRandom() % 3;
         // Mint
         _safeMint(_receiver, nextId);
         emit Mint(_receiver, nextId, msg.value);
@@ -2041,7 +2048,7 @@ contract ClockCity is
         wlMintEnabled = _state;
     }
 
-    function setTime(uint256 id, uint256 d, uint256 h) public {
+    function setTime(uint256 id, uint256 d, uint256 h) internal/* public */ {
         require(
             ownerOf(id) == _msgSender(),
             "Time can only by set by Clock holder"
